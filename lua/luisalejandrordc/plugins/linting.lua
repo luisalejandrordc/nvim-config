@@ -4,6 +4,19 @@ return {
 	config = function()
 		local lint = require("lint")
 
+		lint.linters.pylint = {
+			cmd = "pylint",
+			stdin = false,
+			args = {
+				"-f",
+				"json",
+				"--disable=import-error,missing-module-docstring,missing-function-docstring",
+			},
+			stream = "stdout",
+			ignore_exitcode = true,
+			parser = lint.linters.pylint.parser,
+		}
+
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },

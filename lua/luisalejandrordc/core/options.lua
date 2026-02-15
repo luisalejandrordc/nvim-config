@@ -5,7 +5,6 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
-
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
@@ -28,18 +27,15 @@ opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or 
 
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
-
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 opt.swapfile = false
 
-
-
-
-
-
-
-
-
-
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+	callback = function()
+		opt.number = false
+		opt.relativenumber = false
+	end,
+})
