@@ -13,33 +13,59 @@ return {
 				width = 35,
 				relativenumber = true,
 			},
-			-- change folder arrow icons
+
 			renderer = {
 				indent_markers = {
 					enable = true,
 				},
+
 				icons = {
+					webdev_colors = true, -- use colors from devicons
+					show = {
+						file = true,
+						folder = true,
+						folder_arrow = true,
+						git = true,
+					},
 					glyphs = {
+						default = "󰈚",
+						symlink = "",
+
 						folder = {
-							arrow_closed = "", -- arrow when folder is closed
-							arrow_open = "", -- arrow when folder is open
+							default = "",
+							open = "",
+							empty = "",
+							empty_open = "",
+							symlink = "",
+							symlink_open = "",
+
+							arrow_closed = "",
+							arrow_open = "",
+						},
+
+						git = {
+							unstaged = "✗",
+							staged = "✓",
+							unmerged = "",
+							renamed = "➜",
+							untracked = "★",
+							deleted = "",
+							ignored = "◌",
 						},
 					},
 				},
 			},
-			-- disable window_picker for
-			-- explorer to work well with
-			-- window splits
+
 			actions = {
 				open_file = {
-					window_picker = {
-						enable = false,
-					},
+					window_picker = { enable = false },
 				},
 			},
+
 			filters = {
 				custom = { ".DS_Store" },
 			},
+
 			git = {
 				ignore = false,
 			},
