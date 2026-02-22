@@ -1,5 +1,1 @@
 # Personal Neovim Configuration
-
-
-
-
