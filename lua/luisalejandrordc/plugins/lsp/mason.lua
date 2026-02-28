@@ -38,6 +38,7 @@ return {
 				"prismals",
 				"pyright",
 				"clangd",
+				"texlab",
 			},
 		})
 
@@ -49,6 +50,7 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
+				"latexindent",
 			},
 		})
 	end,

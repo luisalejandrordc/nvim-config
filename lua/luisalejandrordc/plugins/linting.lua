@@ -10,7 +10,7 @@ return {
 			args = {
 				"-f",
 				"json",
-				"--disable=import-error,missing-module-docstring,missing-function-docstring",
+				"--disable=import-error,missing-module-docstring,missing-function-docstring,broad-exception-caught",
 			},
 			stream = "stdout",
 			ignore_exitcode = true,
