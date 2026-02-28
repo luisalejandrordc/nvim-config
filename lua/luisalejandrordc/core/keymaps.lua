@@ -22,19 +22,12 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
+-- Word Wrapping
+vim.keymap.set("n", "<leader>w", function()
+	local wrap_enabled = vim.opt.wrap:get()
+	vim.opt.wrap = not wrap_enabled
+	vim.opt.linebreak = not wrap_enabled
+	vim.opt.breakindent = not wrap_enabled
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	print("Wrap: " .. (wrap_enabled and "OFF" or "ON"))
+end, { desc = "Toggle soft wrap" })
