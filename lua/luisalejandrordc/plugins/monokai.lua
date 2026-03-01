@@ -15,6 +15,12 @@ return {
 
 		vim.cmd.colorscheme("monokai-pro")
 
+		-- Set LaTeX colors manually
+		vim.api.nvim_set_hl(0, "@label.latex", { fg = "#FC9867" })
+		vim.api.nvim_set_hl(0, "@markup.heading.3.latex", { fg = "#FFD866" })
+		vim.api.nvim_set_hl(0, "@markup.heading.4.latex", { fg = "#FFD866" })
+		vim.api.nvim_set_hl(0, "@markup.heading.5.latex", { fg = "#FFD866" })
+
 		-- Tokyonight Night colors for nvim-tree only
 		local colors = {
 			fg = "#c0caf5",
