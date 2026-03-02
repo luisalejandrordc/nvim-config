@@ -7,15 +7,15 @@ return {
 		vim.g.vimtex_quickfix_mode = 0
 		vim.g.vimtex_syntax_enabled = 0
 		vim.g.vimtex_compiler_latexmk = {
-			-- continuous = 1,
+			continuous = 1,
 			executable = "latexmk",
 			options = {
 				-- "-pdf",
-				"-lualatex",
+				"-lualatex", -- Emoji support
 				"-interaction=nonstopmode",
 				"-synctex=1",
 				"-file-line-error",
-				"-outdir=build",
+				-- "-outdir=build",
 			},
 		}
 	end,
