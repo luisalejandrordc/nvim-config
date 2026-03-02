@@ -15,8 +15,18 @@ return {
 				"-interaction=nonstopmode",
 				"-synctex=1",
 				"-file-line-error",
-				-- "-outdir=build",
+				"-outdir=build",
 			},
 		}
+		-- Run clean after every compile (infinite loop on continuous mode so you must disable it, remove the outdir=build option too)
+		-- vim.api.nvim_create_autocmd("User", {
+		-- 	pattern = {
+		-- 		"VimtexEventCompileSuccess",
+		-- 		"VimtexEventCompileFailed",
+		-- 	},
+		-- 	callback = function()
+		-- 		vim.cmd("VimtexClean")
+		-- 	end,
+		-- })
 	end,
 }
