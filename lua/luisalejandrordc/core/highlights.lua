@@ -1,14 +1,5 @@
 local M = {}
 
-local colors = {
-	fg = "#c0caf5",
-	blue = "#7aa2f7",
-	cyan = "#7dcfff",
-	purple = "#bb9af7",
-	blue_dim = "#3d59a1",
-	indent = "#3b4261",
-}
-
 function M.transparent_nvim_tree()
 	vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "NONE" })
 	vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "NONE" })
@@ -24,6 +15,7 @@ function M.transparent_nvim_tree()
 	-- Enable current line highlight
 	vim.opt.cursorline = true
 	-- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#2B2B2B" }) -- slightly lighter than background
+	-- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#222222" }) -- slightly lighter than background
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1A1A1A" }) -- slightly lighter than background
 	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#47FF9C", bold = true }) -- optional, line number highlight
 end
