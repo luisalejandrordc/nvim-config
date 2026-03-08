@@ -46,6 +46,10 @@ return {
 				"query",
 				"vimdoc",
 				"c",
+				"cpp",
+				"php",
+				"java",
+				"sql",
 				"latex",
 			},
 			incremental_selection = {
