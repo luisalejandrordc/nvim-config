@@ -12,6 +12,7 @@ function M.transparent_nvim_tree()
 	vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName", { fg = "#6E7276" })
 	vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#9CA0A4" })
 
+	vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = "#2C2C2C" })
 	-- vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = "#343454" })
 
 	-- Enable current line highlight

@@ -11,6 +11,7 @@ return {
 			persist_size = true,
 		})
 
-		vim.keymap.set("n", "<leader>\\", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+		-- vim.keymap.set("n", "<leader>\\", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+		vim.keymap.set("n", "<C-\\>", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 	end,
 }
