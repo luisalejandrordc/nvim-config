@@ -39,6 +39,16 @@ return {
 				"pyright",
 				"clangd",
 				"texlab",
+				"jsonls",
+				"yamlls",
+				"bashls",
+				"dockerls",
+				"jdtls",
+				"gopls",
+				"sqlls",
+				"postgres_lsp",
+				"marksman",
+				"r_language_server",
 			},
 		})
 
@@ -48,9 +58,13 @@ return {
 				"stylua", -- lua formatter
 				"isort", -- python formatter
 				"black", -- python formatter
+				"latexindent", -- latex formatter
+				"shfmt", -- shell formatter
+				"sql-formatter", -- sql formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
-				"latexindent",
+				"shellcheck", -- shell linter
+				"markdownlint", -- markdown linter
 			},
 		})
 	end,

@@ -51,6 +51,8 @@ return {
 				"java",
 				"sql",
 				"latex",
+				"go",
+				"r",
 			},
 			incremental_selection = {
 				enable = true,
