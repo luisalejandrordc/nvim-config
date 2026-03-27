@@ -21,6 +21,9 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				tex = { "latexindent" },
+				sh = { "shfmt" },
+				bash = { "shfmt" },
+				sql = { "sql_formatter" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
