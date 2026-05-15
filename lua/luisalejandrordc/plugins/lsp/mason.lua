@@ -48,7 +48,7 @@ return {
 				"sqlls",
 				"postgres_lsp",
 				"marksman",
-				"r_language_server",
+				-- "r_language_server",
 			},
 		})
 
