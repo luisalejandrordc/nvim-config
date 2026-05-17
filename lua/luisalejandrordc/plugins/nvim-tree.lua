@@ -23,7 +23,11 @@ return {
 			},
 
 			trash = {
-				cmd = "trash",
+				-- MAC
+				-- cmd = "trash",
+
+				-- WSL
+				cmd = "gio trash",
 				require_confirm = true,
 			},
 

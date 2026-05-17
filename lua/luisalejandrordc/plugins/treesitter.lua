@@ -51,6 +51,7 @@ return {
 				"java",
 				"sql",
 				"latex",
+				"arduino",
 				"go",
 				"r",
 			},

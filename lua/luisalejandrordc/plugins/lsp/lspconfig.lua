@@ -8,7 +8,7 @@ return {
 	},
 	config = function()
 		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
@@ -17,6 +17,12 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local keymap = vim.keymap -- for conciseness
+
+		vim.filetype.add({
+			extension = {
+				ino = "arduino",
+			},
+		})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -83,31 +89,122 @@ return {
 			},
 		})
 
+		-- mason_lspconfig.setup({
+		-- 	handlers = {
+		-- 		-- default handler
+		-- 		function(server_name)
+		-- 			lspconfig[server_name].setup({
+		-- 				capabilities = capabilities,
+		-- 			})
+		-- 		end,
+		--
+		-- 		["svelte"] = function()
+		-- 			lspconfig.svelte.setup({
+		-- 				capabilities = capabilities,
+		-- 				on_attach = function(client, bufnr)
+		-- 					vim.api.nvim_create_autocmd("BufWritePost", {
+		-- 						pattern = { "*.js", "*.ts" },
+		-- 						callback = function(ctx)
+		-- 							client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+		-- 						end,
+		-- 					})
+		-- 				end,
+		-- 			})
+		-- 		end,
+		--
+		-- 		["graphql"] = function()
+		-- 			lspconfig.graphql.setup({
+		-- 				capabilities = capabilities,
+		-- 				filetypes = {
+		-- 					"graphql",
+		-- 					"gql",
+		-- 					"svelte",
+		-- 					"typescriptreact",
+		-- 					"javascriptreact",
+		-- 				},
+		-- 			})
+		-- 		end,
+		--
+		-- 		["emmet_ls"] = function()
+		-- 			lspconfig.emmet_ls.setup({
+		-- 				capabilities = capabilities,
+		-- 				filetypes = {
+		-- 					"html",
+		-- 					"typescriptreact",
+		-- 					"javascriptreact",
+		-- 					"css",
+		-- 					"sass",
+		-- 					"scss",
+		-- 					"less",
+		-- 					"svelte",
+		-- 				},
+		-- 			})
+		-- 		end,
+		--
+		-- 		["lua_ls"] = function()
+		-- 			lspconfig.lua_ls.setup({
+		-- 				capabilities = capabilities,
+		-- 				settings = {
+		-- 					Lua = {
+		-- 						diagnostics = { globals = { "vim" } },
+		-- 						completion = { callSnippet = "Replace" },
+		-- 					},
+		-- 				},
+		-- 			})
+		-- 		end,
+		-- 	},
+		-- })
+		-- lspconfig.arduino_language_server.setup({
+		-- 	capabilities = capabilities,
+		--
+		-- 	cmd = {
+		-- 		"arduino-language-server",
+		-- 		"-cli",
+		-- 		"arduino-cli",
+		-- 		"-cli-config",
+		-- 		"/home/luisalejandrordc/.arduino15/arduino-cli.yaml",
+		-- 		"-clangd",
+		-- 		"clangd",
+		-- 		"-fqbn",
+		-- 		"arduino:avr:nano",
+		-- 	},
+		--
+		-- 	filetypes = { "arduino" },
+		--
+		-- 	root_dir = lspconfig.util.root_pattern(".git", "*.ino"),
+		-- })
+		--
 		mason_lspconfig.setup({
 			handlers = {
 				-- default handler
 				function(server_name)
-					lspconfig[server_name].setup({
+					vim.lsp.config(server_name, {
 						capabilities = capabilities,
 					})
+
+					vim.lsp.enable(server_name)
 				end,
 
 				["svelte"] = function()
-					lspconfig.svelte.setup({
+					vim.lsp.config("svelte", {
 						capabilities = capabilities,
 						on_attach = function(client, bufnr)
 							vim.api.nvim_create_autocmd("BufWritePost", {
 								pattern = { "*.js", "*.ts" },
 								callback = function(ctx)
-									client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+									client.notify("$/onDidChangeTsOrJsFile", {
+										uri = ctx.match,
+									})
 								end,
 							})
 						end,
 					})
+
+					vim.lsp.enable("svelte")
 				end,
 
 				["graphql"] = function()
-					lspconfig.graphql.setup({
+					vim.lsp.config("graphql", {
 						capabilities = capabilities,
 						filetypes = {
 							"graphql",
@@ -117,10 +214,12 @@ return {
 							"javascriptreact",
 						},
 					})
+
+					vim.lsp.enable("graphql")
 				end,
 
 				["emmet_ls"] = function()
-					lspconfig.emmet_ls.setup({
+					vim.lsp.config("emmet_ls", {
 						capabilities = capabilities,
 						filetypes = {
 							"html",
@@ -133,20 +232,50 @@ return {
 							"svelte",
 						},
 					})
+
+					vim.lsp.enable("emmet_ls")
 				end,
 
 				["lua_ls"] = function()
-					lspconfig.lua_ls.setup({
+					vim.lsp.config("lua_ls", {
 						capabilities = capabilities,
 						settings = {
 							Lua = {
-								diagnostics = { globals = { "vim" } },
-								completion = { callSnippet = "Replace" },
+								diagnostics = {
+									globals = { "vim" },
+								},
+								completion = {
+									callSnippet = "Replace",
+								},
 							},
 						},
 					})
+
+					vim.lsp.enable("lua_ls")
 				end,
 			},
 		})
+
+		vim.lsp.config("arduino_language_server", {
+			capabilities = capabilities,
+
+			cmd = {
+				"arduino-language-server",
+				"-cli",
+				"arduino-cli",
+				"-cli-config",
+				"/home/luisalejandrordc/.arduino15/arduino-cli.yaml",
+				"-clangd",
+				"clangd",
+				"-fqbn",
+				"arduino:avr:nano",
+			},
+
+			filetypes = { "arduino" },
+
+			root_dir = vim.fs.root(0, { ".git" }),
+		})
+
+		vim.lsp.enable("arduino_language_server")
 	end,
 }

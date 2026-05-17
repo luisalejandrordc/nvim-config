@@ -48,6 +48,7 @@ return {
 				"sqlls",
 				"postgres_lsp",
 				"marksman",
+				-- "arduino_language_server",
 				-- "r_language_server",
 			},
 		})
