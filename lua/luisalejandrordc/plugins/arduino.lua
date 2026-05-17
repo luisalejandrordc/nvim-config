@@ -2,7 +2,7 @@ return {
 	"yuukiflow/Arduino-Nvim",
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
-		"neovim/nvim-lspconfig",
+		-- "neovim/nvim-lspconfig",
 	},
 	config = function()
 		-- Load Arduino plugin for .ino files
