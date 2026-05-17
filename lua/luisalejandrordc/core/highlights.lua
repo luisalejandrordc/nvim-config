@@ -17,9 +17,7 @@ function M.transparent_nvim_tree()
 
 	-- Enable current line highlight
 	vim.opt.cursorline = true
-	-- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#2B2B2B" }) -- slightly lighter than background
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#1A1A1A" }) -- slightly lighter than background
-	-- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#2A2A3C" }) -- slightly lighter than background
 	-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#5A5A78", bg = "#1E1E2E" })
 	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#47FF9C", bold = true }) -- optional, line number highlight
 end
