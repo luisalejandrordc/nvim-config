@@ -22,7 +22,7 @@ return {
 				additional_vim_regex_highlighting = { "latex" },
 			},
 			-- enable indentation
-			indent = { enable = true },
+			indent = { enable = true, disable = { "cpp" } },
 			-- ensure these language parsers are installed
 			ensure_installed = {
 				"python",
