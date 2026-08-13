@@ -89,91 +89,10 @@ return {
 			},
 		})
 
-		-- mason_lspconfig.setup({
-		-- 	handlers = {
-		-- 		-- default handler
-		-- 		function(server_name)
-		-- 			lspconfig[server_name].setup({
-		-- 				capabilities = capabilities,
-		-- 			})
-		-- 		end,
-		--
-		-- 		["svelte"] = function()
-		-- 			lspconfig.svelte.setup({
-		-- 				capabilities = capabilities,
-		-- 				on_attach = function(client, bufnr)
-		-- 					vim.api.nvim_create_autocmd("BufWritePost", {
-		-- 						pattern = { "*.js", "*.ts" },
-		-- 						callback = function(ctx)
-		-- 							client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-		-- 						end,
-		-- 					})
-		-- 				end,
-		-- 			})
-		-- 		end,
-		--
-		-- 		["graphql"] = function()
-		-- 			lspconfig.graphql.setup({
-		-- 				capabilities = capabilities,
-		-- 				filetypes = {
-		-- 					"graphql",
-		-- 					"gql",
-		-- 					"svelte",
-		-- 					"typescriptreact",
-		-- 					"javascriptreact",
-		-- 				},
-		-- 			})
-		-- 		end,
-		--
-		-- 		["emmet_ls"] = function()
-		-- 			lspconfig.emmet_ls.setup({
-		-- 				capabilities = capabilities,
-		-- 				filetypes = {
-		-- 					"html",
-		-- 					"typescriptreact",
-		-- 					"javascriptreact",
-		-- 					"css",
-		-- 					"sass",
-		-- 					"scss",
-		-- 					"less",
-		-- 					"svelte",
-		-- 				},
-		-- 			})
-		-- 		end,
-		--
-		-- 		["lua_ls"] = function()
-		-- 			lspconfig.lua_ls.setup({
-		-- 				capabilities = capabilities,
-		-- 				settings = {
-		-- 					Lua = {
-		-- 						diagnostics = { globals = { "vim" } },
-		-- 						completion = { callSnippet = "Replace" },
-		-- 					},
-		-- 				},
-		-- 			})
-		-- 		end,
-		-- 	},
-		-- })
-		-- lspconfig.arduino_language_server.setup({
-		-- 	capabilities = capabilities,
-		--
-		-- 	cmd = {
-		-- 		"arduino-language-server",
-		-- 		"-cli",
-		-- 		"arduino-cli",
-		-- 		"-cli-config",
-		-- 		"/home/luisalejandrordc/.arduino15/arduino-cli.yaml",
-		-- 		"-clangd",
-		-- 		"clangd",
-		-- 		"-fqbn",
-		-- 		"arduino:avr:nano",
-		-- 	},
-		--
-		-- 	filetypes = { "arduino" },
-		--
-		-- 	root_dir = lspconfig.util.root_pattern(".git", "*.ino"),
-		-- })
-		--
+		vim.lsp.config("graphql", {
+			filetypes = { "graphql", "gql" },
+		})
+
 		mason_lspconfig.setup({
 			handlers = {
 				-- default handler
@@ -181,7 +100,6 @@ return {
 					vim.lsp.config(server_name, {
 						capabilities = capabilities,
 					})
-
 					vim.lsp.enable(server_name)
 				end,
 
@@ -199,7 +117,6 @@ return {
 							})
 						end,
 					})
-
 					vim.lsp.enable("svelte")
 				end,
 
@@ -210,11 +127,10 @@ return {
 							"graphql",
 							"gql",
 							"svelte",
-							"typescriptreact",
-							"javascriptreact",
+							-- "typescriptreact",
+							-- "javascriptreact",
 						},
 					})
-
 					vim.lsp.enable("graphql")
 				end,
 
@@ -232,7 +148,6 @@ return {
 							"svelte",
 						},
 					})
-
 					vim.lsp.enable("emmet_ls")
 				end,
 
@@ -250,7 +165,6 @@ return {
 							},
 						},
 					})
-
 					vim.lsp.enable("lua_ls")
 				end,
 			},
@@ -258,7 +172,6 @@ return {
 
 		vim.lsp.config("arduino_language_server", {
 			capabilities = capabilities,
-
 			cmd = {
 				"arduino-language-server",
 				"-cli",
@@ -270,12 +183,9 @@ return {
 				"-fqbn",
 				"arduino:avr:nano",
 			},
-
 			filetypes = { "arduino" },
-
 			root_dir = vim.fs.root(0, { ".git" }),
 		})
-
 		vim.lsp.enable("arduino_language_server")
 	end,
 }

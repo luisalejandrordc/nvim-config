@@ -2,12 +2,11 @@ return {
 	"lervag/vimtex",
 	lazy = false,
 	init = function()
-		vim.g.vimtex_view_method = "general"
-
 		-- MAC
 		-- vim.g.vimtex_view_method = "skim"
 
 		-- WSL
+		vim.g.vimtex_view_method = "general"
 		vim.g.vimtex_view_general_viewer = "/mnt/c/Users/luisa/AppData/Local/SumatraPDF/SumatraPDF.exe"
 		vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
 
@@ -23,7 +22,8 @@ return {
 				"-interaction=nonstopmode",
 				"-synctex=1",
 				"-file-line-error",
-				"-outdir=build",
+				-- "-outdir=build",
+				-- "-auxdir=build",
 			},
 		}
 		-- Run clean after every compile (infinite loop on continuous mode so you must disable it, remove the outdir=build option too)

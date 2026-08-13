@@ -41,3 +41,29 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		opt.relativenumber = false
 	end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "tex",
+	callback = function()
+		vim.opt_local.textwidth = 80
+		vim.opt_local.formatoptions:append("t")
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*.tex",
+	callback = function()
+		local view = vim.fn.winsaveview()
+
+		-- format only lines longer than 80 chars
+		local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+		for i, line in ipairs(lines) do
+			if #line > 80 then
+				vim.cmd(i .. "normal! gqq")
+			end
+		end
+
+		vim.fn.winrestview(view)
+	end,
+})
