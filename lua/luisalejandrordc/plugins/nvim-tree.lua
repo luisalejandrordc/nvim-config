@@ -7,13 +7,10 @@ return {
 		-- Detect OS and configure trash command
 		local sysname = vim.uv.os_uname().sysname
 		local trash_cmd
-		local require_confirm
 		if sysname == "Darwin" then
 			trash_cmd = "trash"
-			require_confirm = false
 		elseif sysname == "Linux" then
 			trash_cmd = "gio trash"
-			require_confirm = true
 		end
 
 		-- recommended settings from nvim-tree documentation
@@ -36,7 +33,7 @@ return {
 
 			trash = {
 				cmd = trash_cmd,
-				require_confirm = require_confirm,
+				require_confirm = true,
 			},
 
 			renderer = {

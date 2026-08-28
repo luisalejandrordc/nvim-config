@@ -1,5 +1,6 @@
 require("luisalejandrordc.core.options")
 require("luisalejandrordc.core.keymaps")
+require("luisalejandrordc.core.filetypes")
 
 local highlights = require("luisalejandrordc.core.highlights")
 

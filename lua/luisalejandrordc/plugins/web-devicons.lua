@@ -6,6 +6,15 @@ return {
 		devicons.setup({
 			default = true, -- fallback icon for unknown filetypes
 			strict = true, -- only use defined icons
+
+			override_by_extension = {
+				-- Google Apps Script
+				gs = {
+					icon = "",
+					color = "#5F9CF7",
+					name = "GoogleAppsScript",
+				},
+			},
 		})
 
 		devicons.set_icon({
