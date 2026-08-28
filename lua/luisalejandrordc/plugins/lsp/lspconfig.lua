@@ -78,6 +78,7 @@ return {
 
 		-- Change the Diagnostic symbols in the sign column (gutter)
 		vim.diagnostic.config({
+			severity_sort = true,
 			underline = false,
 			signs = {
 				text = {
