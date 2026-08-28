@@ -14,6 +14,11 @@ function M.transparent_nvim_tree()
 
 	-- vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = "#2C2C2C" })
 
+	vim.api.nvim_set_hl(0, "NormalFloat", {
+		bg = "#222022",
+		fg = "#cdd6f4",
+	})
+
 	-- Enable current line highlight
 	vim.opt.cursorline = true
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#181818" }) -- slightly lighter than background

@@ -46,6 +46,7 @@ return {
 			"arduino",
 			"go",
 			"r",
+			"rust",
 		}
 		require("nvim-treesitter").install(ensure_installed)
 
