@@ -7,9 +7,6 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		-- import lspconfig plugin
-		-- local lspconfig = require("lspconfig")
-
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
 
@@ -73,7 +70,7 @@ return {
 				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
 				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+				keymap.set("n", "<leader>rs", ":lsp restart<CR>", opts) -- mapping to restart lsp if necessary
 			end,
 		})
 
@@ -88,93 +85,85 @@ return {
 				text = {
 					[vim.diagnostic.severity.ERROR] = " ",
 					[vim.diagnostic.severity.WARN] = " ",
-					[vim.diagnostic.severity.HINT] = "󰠠 ",
+					[vim.diagnostic.severity.HINT] = "   ",
 					[vim.diagnostic.severity.INFO] = " ",
 				},
 			},
 		})
 
-		vim.lsp.config("graphql", {
-			filetypes = { "graphql", "gql" },
+		-- ==========================================
+		-- 1. DEFINE ALL LSP CONFIGURATIONS DIRECTLY
+		-- ==========================================
+
+		-- Global default template configuration fallback for unconfigured servers
+		vim.lsp.config("*", {
+			capabilities = capabilities,
 		})
 
-		mason_lspconfig.setup({
-			handlers = {
-				-- default handler
-				function(server_name)
-					vim.lsp.config(server_name, {
-						capabilities = capabilities,
-					})
-					vim.lsp.enable(server_name)
-				end,
-
-				["svelte"] = function()
-					vim.lsp.config("svelte", {
-						capabilities = capabilities,
-						on_attach = function(client, bufnr)
-							vim.api.nvim_create_autocmd("BufWritePost", {
-								pattern = { "*.js", "*.ts" },
-								callback = function(ctx)
-									client.notify("$/onDidChangeTsOrJsFile", {
-										uri = ctx.match,
-									})
-								end,
-							})
-						end,
-					})
-					vim.lsp.enable("svelte")
-				end,
-
-				["graphql"] = function()
-					vim.lsp.config("graphql", {
-						capabilities = capabilities,
-						filetypes = {
-							"graphql",
-							"gql",
-							"svelte",
-							-- "typescriptreact",
-							-- "javascriptreact",
-						},
-					})
-					vim.lsp.enable("graphql")
-				end,
-
-				["emmet_ls"] = function()
-					vim.lsp.config("emmet_ls", {
-						capabilities = capabilities,
-						filetypes = {
-							"html",
-							"typescriptreact",
-							"javascriptreact",
-							"css",
-							"sass",
-							"scss",
-							"less",
-							"svelte",
-						},
-					})
-					vim.lsp.enable("emmet_ls")
-				end,
-
-				["lua_ls"] = function()
-					vim.lsp.config("lua_ls", {
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								diagnostics = {
-									globals = { "vim" },
-								},
-								completion = {
-									callSnippet = "Replace",
-								},
-							},
-						},
-					})
-					vim.lsp.enable("lua_ls")
-				end,
+		-- Clangd configuration with working C++20 fallback flag setup
+		vim.lsp.config("clangd", {
+			capabilities = capabilities,
+			init_options = {
+				fallbackFlags = { "--std=c++20" },
 			},
 		})
 
+		-- Svelte configuration
+		vim.lsp.config("svelte", {
+			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd("BufWritePost", {
+					pattern = { "*.js", "*.ts" },
+					callback = function(ctx)
+						client.notify("$/onDidChangeTsOrJsFile", {
+							uri = ctx.match,
+						})
+					end,
+				})
+			end,
+		})
+
+		-- GraphQL configuration
+		vim.lsp.config("graphql", {
+			capabilities = capabilities,
+			filetypes = {
+				"graphql",
+				"gql",
+				"svelte",
+			},
+		})
+
+		-- Emmet configuration
+		vim.lsp.config("emmet_ls", {
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"typescriptreact",
+				"javascriptreact",
+				"css",
+				"sass",
+				"scss",
+				"less",
+				"svelte",
+			},
+		})
+
+		-- Lua configuration
+		vim.lsp.config("lua_ls", {
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					completion = {
+						callSnippet = "Replace",
+					},
+				},
+			},
+		})
+
+		-- Arduino language server configuration
 		vim.lsp.config("arduino_language_server", {
 			capabilities = capabilities,
 			cmd = {
@@ -191,6 +180,21 @@ return {
 			filetypes = { "arduino" },
 			root_dir = vim.fs.root(0, { ".git" }),
 		})
-		vim.lsp.enable("arduino_language_server")
+
+		-- ==========================================
+		-- 2. INITIALIZE MASON & AUTO-ENABLE SERVERS
+		-- ==========================================
+
+		mason_lspconfig.setup({
+			-- Automatically match local LSP installations with configs initialized above
+			automatic_enable = true,
+			ensure_installed = {
+				"clangd",
+				"svelte",
+				"graphql",
+				"emmet_ls",
+				"lua_ls",
+			},
+		})
 	end,
 }
