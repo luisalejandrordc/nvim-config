@@ -16,6 +16,14 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
+local sysname = vim.uv.os_uname().sysname
+if sysname ~= "Darwin" then
+	keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left split" })
+	keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to lower split" })
+	keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper split" })
+	keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right split" })
+end
+
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab

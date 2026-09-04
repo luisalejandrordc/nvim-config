@@ -11,14 +11,22 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 
+		local sysname = vim.uv.os_uname().sysname
+		local actions_keymaps
+		if sysname == "Darwin" then
+			actions_keymaps = { "<C-k>", "<C-j>", "<C-q>" }
+		else
+			actions_keymaps = { "<M-k>", "<M-j>", "<M-q>" }
+		end
+
 		telescope.setup({
 			defaults = {
 				path_display = { "smart" },
 				mappings = {
 					i = {
-						["<C-k>"] = actions.move_selection_previous, -- move to prev result
-						["<C-j>"] = actions.move_selection_next, -- move to next result
-						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+						[actions_keymaps[1]] = actions.move_selection_previous, -- move to prev result
+						[actions_keymaps[2]] = actions.move_selection_next, -- move to next result
+						[actions_keymaps[3]] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
 				},
 			},
