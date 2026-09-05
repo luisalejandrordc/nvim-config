@@ -1,3 +1,5 @@
+local platform = require("luisalejandrordc.core.platform")
+
 vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
@@ -16,8 +18,7 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
-local sysname = vim.uv.os_uname().sysname
-if sysname ~= "Darwin" then
+if not platform.is_mac then
 	keymap.set("n", "<M-h>", "<C-w>h", { desc = "Move to left split" })
 	keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to lower split" })
 	keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper split" })

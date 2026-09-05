@@ -2,11 +2,10 @@ return {
 	"lervag/vimtex",
 	lazy = false,
 	init = function()
-		-- Detect OS and configure trash command
-		local sysname = vim.uv.os_uname().sysname
-		if sysname == "Darwin" then
+		local platform = require("luisalejandrordc.core.platform")
+		if platform.is_mac then
 			vim.g.vimtex_view_method = "skim"
-		elseif sysname == "Linux" then
+		else
 			vim.g.vimtex_view_method = "general"
 			vim.g.vimtex_view_general_viewer = "/mnt/c/Users/luisa/AppData/Local/SumatraPDF/SumatraPDF.exe"
 			vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"

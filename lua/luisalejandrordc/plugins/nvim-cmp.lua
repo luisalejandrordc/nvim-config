@@ -22,13 +22,8 @@ return {
 
 		local lspkind = require("lspkind")
 
-		local sysname = vim.uv.os_uname().sysname
-		local selection_keymaps
-		if sysname == "Darwin" then
-			selection_keymaps = { "<C-k>", "<C-j>" }
-		else
-			selection_keymaps = { "<M-k>", "<M-j>" }
-		end
+		local platform = require("luisalejandrordc.core.platform")
+		local selection_keymaps = platform.is_mac and { "<C-k>", "<C-j>" } or { "<M-k>", "<M-j>" }
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()

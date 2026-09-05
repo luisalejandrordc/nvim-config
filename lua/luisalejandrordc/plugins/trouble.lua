@@ -14,11 +14,11 @@ return {
 
 		-- Trouble background
 		vim.api.nvim_set_hl(0, "TroubleNormal", {
-			bg = "#221F22",
+			bg = "none",
 		})
 
 		vim.api.nvim_set_hl(0, "TroubleNormalNC", {
-			bg = "#221F22",
+			bg = "none",
 		})
 	end,
 

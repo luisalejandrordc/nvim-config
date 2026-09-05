@@ -11,13 +11,8 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 
-		local sysname = vim.uv.os_uname().sysname
-		local actions_keymaps
-		if sysname == "Darwin" then
-			actions_keymaps = { "<C-k>", "<C-j>", "<C-q>" }
-		else
-			actions_keymaps = { "<M-k>", "<M-j>", "<M-q>" }
-		end
+		local template = require("luisalejandrordc.core.platform")
+		local actions_keymaps = template.is_mac and { "<C-k>", "<C-j>", "<C-q>" } or { "<M-k>", "<M-j>", "<M-q>" }
 
 		telescope.setup({
 			defaults = {

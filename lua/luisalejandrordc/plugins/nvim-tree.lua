@@ -4,14 +4,8 @@ return {
 	config = function()
 		local nvimtree = require("nvim-tree")
 
-		-- Detect OS and configure trash command
-		local sysname = vim.uv.os_uname().sysname
-		local trash_cmd
-		if sysname == "Darwin" then
-			trash_cmd = "trash"
-		elseif sysname == "Linux" then
-			trash_cmd = "gio trash"
-		end
+		local platform = require("luisalejandrordc.core.platform")
+		local trash_cmd = platform.is_mac and "trash" or "gio trash"
 
 		-- recommended settings from nvim-tree documentation
 		vim.g.loaded_netrw = 1
