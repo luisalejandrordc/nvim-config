@@ -23,7 +23,7 @@ function M.transparent_nvim_tree()
 	vim.opt.cursorline = true
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#181818" }) -- slightly lighter than background
 	vim.api.nvim_set_hl(0, "LineNr", { fg = "#5A5A78", bg = "NONE" })
-	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#47FF9C", bold = true }) -- optional, line number highlight
+	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#E0DEF4", bold = true }) -- optional, line number highlight
 end
 
 return M
