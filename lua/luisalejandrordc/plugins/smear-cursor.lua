@@ -5,7 +5,7 @@ return {
 
 	opts = {
 		stiffness = 1,
-		cursor_color = "#FFFFFF",
+		cursor_color = "#47FF9C",
 		smear_between_buffers = true,
 		smear_between_neighbor_lines = true,
 		scroll_buffer_space = true,
