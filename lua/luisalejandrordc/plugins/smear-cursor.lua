@@ -4,8 +4,8 @@ return {
 	lazy = false,
 
 	opts = {
-		stiffness = 0.8,
-		cursor_color = "#47FF9C",
+		stiffness = 1,
+		cursor_color = "#FFFFFF",
 		smear_between_buffers = true,
 		smear_between_neighbor_lines = true,
 		scroll_buffer_space = true,
