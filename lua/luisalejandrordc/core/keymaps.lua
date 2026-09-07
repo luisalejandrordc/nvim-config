@@ -23,6 +23,7 @@ if not platform.is_mac then
 	keymap.set("n", "<M-j>", "<C-w>j", { desc = "Move to lower split" })
 	keymap.set("n", "<M-k>", "<C-w>k", { desc = "Move to upper split" })
 	keymap.set("n", "<M-l>", "<C-w>l", { desc = "Move to right split" })
+	keymap.set("n", "<M-r>", "<C-r>", { desc = "Redo" })
 end
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
