@@ -14,6 +14,12 @@ return {
 					color = "#5F9CF7",
 					name = "GoogleAppsScript",
 				},
+				-- SPSS / SAV files
+				sav = {
+					icon = "",
+					color = "#89E051",
+					name = "SAV2",
+				},
 			},
 		})
 
