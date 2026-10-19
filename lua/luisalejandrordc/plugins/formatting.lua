@@ -20,6 +20,7 @@ return {
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				go = { "goimports", "gofumpt" },
 				tex = { "latexindent" },
 				sh = { "shfmt" },
 				bash = { "shfmt" },
