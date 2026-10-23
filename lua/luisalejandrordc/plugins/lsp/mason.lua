@@ -35,7 +35,7 @@ return {
 				"dockerls",
 				"jdtls",
 				"gopls",
-				"sqlls",
+				-- "sqlls",
 				"postgres_lsp",
 				"marksman",
 				"rust_analyzer",
