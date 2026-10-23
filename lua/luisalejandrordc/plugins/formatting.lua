@@ -26,6 +26,11 @@ return {
 				bash = { "shfmt" },
 				sql = { "sql_formatter" },
 			},
+			formatters = {
+				sql_formatter = {
+					args = { "--language", "postgresql" },
+				},
+			},
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,
