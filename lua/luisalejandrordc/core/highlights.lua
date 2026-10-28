@@ -22,7 +22,8 @@ function M.transparent_nvim_tree()
 	vim.opt.cursorline = true
 	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#121212" })
 	vim.api.nvim_set_hl(0, "LineNr", { fg = "#5A5A78", bg = "NONE" })
-	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e5b567", bold = true })
+	-- vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e5b567", bold = true })
+	vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#47FF9C", bold = true })
 end
 
 return M
